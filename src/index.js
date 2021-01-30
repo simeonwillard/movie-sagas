@@ -14,14 +14,16 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
-    yield takeEvery('GET_MOVIE', getMovie, getGenre);
+    yield takeEvery('GET_MOVIE', getMovie);
+    yield takeEvery('GET_GENRE', getGenre);
 }
 
 // saga to store individual movie's genres in redux
 function* getGenre(action) {
     try {
+        console.log('*********',action.payload)
         const response = yield axios.get(`/api/genre/${action.payload}`);
-        yield put({type: 'SET_GENRE_INFO', payload: response.data[0]});
+        yield put({type: 'SET_GENRE_INFO', payload: response.data});
     } catch (error) {
         console.log(`error getting genres for selected movie ${error}`);
     }
@@ -74,7 +76,7 @@ const genres = (state = [], action) => {
 }
 
 // reducer storing individual movie genres
-const moviesGenres = (state = {}, action) => {
+const moviesGenres = (state = [], action) => {
     if (action.type === 'SET_GENRE_INFO') {
         return action.payload;
     }
