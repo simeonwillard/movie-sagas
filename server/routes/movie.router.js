@@ -46,6 +46,8 @@ router.post('/', (req, res) => {
         res.sendStatus(500)
       })
 
+      
+
 // Catch for first query
   }).catch(err => {
     console.log(err);
@@ -53,4 +55,17 @@ router.post('/', (req, res) => {
   })
 })
 
+// get this movie
+      router.get('/:id', (req, res) => {
+        const id = req.params.id;
+        const sqlText = `SELECT * FROM "movies" WHERE "id" = $1;`;
+        pool.query(sqlText, [id])
+        .then((result) => {
+          res.send(result.rows);
+        })
+        .catch((error) => {
+          console.log('error getting movie info', error);
+          res.sendStatus(500);
+        });
+      })
 module.exports = router;
