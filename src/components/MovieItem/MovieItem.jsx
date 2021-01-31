@@ -25,25 +25,25 @@ function MovieItem({ movie }) {
     const dispatch = useDispatch();
 
     const handleClick = () => {
-        dispatch({type: 'GET_MOVIE', payload: movie.id});
-        dispatch({type: 'GET_MOVIE_GENRES', payload: movie.id});
+        dispatch({ type: 'GET_MOVIE', payload: movie.id });
+        dispatch({ type: 'GET_MOVIE_GENRES', payload: movie.id });
         history.push('/details');
     }
 
     return (
-        <GridListTile className={classes.tiles} key={movie.id}> 
-        <img src={movie.poster} alt={movie.title} onClick={handleClick} />
-        <GridListTileBar 
-        title={movie.title}
-        actionIcon={
-            <IconButton
-            aria-label={`info about ${movie.title}`}
-            className={classes.icon}
-        >
-            <InfoIcon />
-            </IconButton>
-        }
-        />
+        <GridListTile className={classes.tiles} key={movie.id}>
+            <img src={movie.poster} alt={movie.title} onClick={handleClick} />
+            <GridListTileBar
+                title={movie.title}
+                actionIcon={
+                    <IconButton
+                        aria-label={`info about ${movie.title}`}
+                        className={classes.icon}
+                    >
+                        <InfoIcon />
+                    </IconButton>
+                }
+            />
         </GridListTile>
     );
 

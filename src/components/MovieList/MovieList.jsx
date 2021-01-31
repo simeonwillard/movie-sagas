@@ -41,7 +41,7 @@ function MovieList(props) {
             <div>
                 <h1>MovieList</h1>
                 <nav>
-                    <span className="nav"><Link className="link" to='/add-movie'>Add A Movie</Link></span>
+                    <Link className="link" to='/add-movie'>Add A Movie</Link>
                 </nav>
             </div>
             <div className={classes.root}>

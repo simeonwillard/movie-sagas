@@ -42,11 +42,11 @@ function MovieForm() {
             title: 'Sweet!',
             text: 'you added a new movie!',
             imageUrl: newMovie.poster,
-            imageWidth: 400,
+            imageWidth: 200,
             imageHeight: 200,
             imageAlt: 'Custom image',
           })
-        // history.push('/');
+        history.push('/');
     }
 
     const handleCancel = () => {
@@ -76,6 +76,7 @@ function MovieForm() {
         <div>
             <form onSubmit={addMovie}>
                 <div className="title">
+                <InputLabel>Title</InputLabel>
                     <input
                         type="text"
                         name="title"
@@ -84,6 +85,7 @@ function MovieForm() {
                     />
                 </div>
                 <div className="poster">
+                <InputLabel>Poster URL</InputLabel>
                     <input
                         type="text"
                         name="poster"
@@ -92,6 +94,7 @@ function MovieForm() {
                     />
                 </div>
                 <div className="description">
+                <InputLabel>Description</InputLabel>
                     <textarea
                         rows="7"
                         cols="35"
