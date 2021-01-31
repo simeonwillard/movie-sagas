@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import { makeStyles } from "@material-ui/core";
+import IconButton from '@material-ui/core/IconButton';
+import InfoIcon from '@material-ui/icons/Info';
 
 const useStyles = makeStyles((theme) => ({
     icon: {
@@ -29,10 +31,20 @@ function MovieItem({ movie }) {
     }
 
     return (
-        <div key={movie.id} >
-            <h3>{movie.title}</h3>
-            <img src={movie.poster} alt={movie.title} onClick={handleClick} />
-        </div>
+        <GridListTile className={classes.tiles} key={movie.id}> 
+        <img src={movie.poster} alt={movie.title} onClick={handleClick} />
+        <GridListTileBar 
+        title={movie.title}
+        actionIcon={
+            <IconButton
+            aria-label={`info about ${movie.title}`}
+            className={classes.icon}
+        >
+            <InfoIcon />
+            </IconButton>
+        }
+        />
+        </GridListTile>
     );
 
 }
