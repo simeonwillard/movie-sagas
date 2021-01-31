@@ -75,6 +75,7 @@ function MovieForm() {
 
     return (
         <div className="form">
+            <h3>Add a new movie!</h3>
             <form onSubmit={addMovie}>
                 <div className="title">
                 
