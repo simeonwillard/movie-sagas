@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CloseIcon from '@material-ui/icons/Close';
 import CheckIcon from '@material-ui/icons/Check';
 import { useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 function MovieForm() {
@@ -19,7 +20,7 @@ function MovieForm() {
     });
 
     useEffect(() => {
-        dispatch({type: 'FETCH_GENRES'});
+        dispatch({ type: 'FETCH_GENRES' });
     }, []);
 
 
@@ -30,19 +31,44 @@ function MovieForm() {
     const addMovie = (event) => {
         event.preventDefault();
         console.log(newMovie);
-        dispatch({type: 'ADD_MOVIE', payload: newMovie});
+        dispatch({ type: 'ADD_MOVIE', payload: newMovie });
         setNewMovie({
             title: '',
             poster: '',
             description: '',
             genre_id: ''
         });
+        Swal.fire({
+            title: 'Sweet!',
+            text: 'you added a new movie!',
+            imageUrl: newMovie.poster,
+            imageWidth: 400,
+            imageHeight: 200,
+            imageAlt: 'Custom image',
+          })
         // history.push('/');
     }
 
     const handleCancel = () => {
         console.log('clicked cancel');
-        history.push('/');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'your new movie will be deleted',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#30856',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'your movie has been deleted.',
+                    'success'
+                )
+                history.push('/');
+            }
+        })
     }
 
 
@@ -50,43 +76,43 @@ function MovieForm() {
         <div>
             <form onSubmit={addMovie}>
                 <div className="title">
-                <input
-                    type="text"
-                    name="title"
-                    value={newMovie.title}
-                    onChange={handleChange}
-                />
+                    <input
+                        type="text"
+                        name="title"
+                        value={newMovie.title}
+                        onChange={handleChange}
+                    />
                 </div>
                 <div className="poster">
-                <input
-                    type="text"
-                    name="poster"
-                    value={newMovie.poster}
-                    onChange={handleChange}
-                />
+                    <input
+                        type="text"
+                        name="poster"
+                        value={newMovie.poster}
+                        onChange={handleChange}
+                    />
                 </div>
                 <div className="description">
-                <textarea 
-                rows="7" 
-                cols="35"
-                name="description"
-                value={newMovie.description}
-                onChange={handleChange}
-                />
+                    <textarea
+                        rows="7"
+                        cols="35"
+                        name="description"
+                        value={newMovie.description}
+                        onChange={handleChange}
+                    />
                 </div>
                 <div>
                     <InputLabel>Genre</InputLabel>
-                     <Select 
-                     value={newMovie.genre_id}
-                     name="genre_id"
-                     onChange={handleChange}
-                     >
-                     {genres?.map((genre) => (
-                         <MenuItem key={genre.id} value={genre.id}>
-                         {genre.name}
-                         </MenuItem>
-                     ))}
-                     </Select>
+                    <Select
+                        value={newMovie.genre_id}
+                        name="genre_id"
+                        onChange={handleChange}
+                    >
+                        {genres?.map((genre) => (
+                            <MenuItem key={genre.id} value={genre.id}>
+                                {genre.name}
+                            </MenuItem>
+                        ))}
+                    </Select>
                 </div>
                 <IconButton color="secondary" onClick={handleCancel}>
                     <CloseIcon />
