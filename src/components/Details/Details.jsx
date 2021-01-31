@@ -32,10 +32,7 @@ function Details() {
                 <p>{movieInfo.description}</p>
             </div>
             <div>
-                <IconButton 
-                color="primary"
-                onClick={handleClick}
-                >
+                <IconButton color="primary" onClick={handleClick}>
                     <ArrowBackIosIcon /><h6>back</h6>
                 </IconButton>
             </div>

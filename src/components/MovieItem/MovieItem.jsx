@@ -9,7 +9,7 @@ function MovieItem({ movie }) {
 
     const handleClick = () => {
         dispatch({type: 'GET_MOVIE', payload: movie.id});
-        dispatch({type: 'GET_GENRE', payload: movie.id});
+        dispatch({type: 'GET_MOVIE_GENRES', payload: movie.id});
         history.push('/details');
     }
 

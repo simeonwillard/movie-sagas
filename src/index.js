@@ -10,18 +10,41 @@ import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
+import { yellow } from '@material-ui/core/colors';
 
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('GET_MOVIE', getMovie);
-    yield takeEvery('GET_GENRE', getGenre);
+    yield takeEvery('GET_MOVIE_GENRES', getMovieGenres);
+    yield takeEvery('FETCH_GENRES', getGenres);
+    yield takeEvery('ADD_MOVIE', addMovie);
+}
+
+// saga to update database with new movie
+function* addMovie(action) {
+    try {
+        const newMovie = action.payload;
+        yield axios.post('/api/movie', {newMovie})
+    } catch (error) {
+        console.log('error adding new movie', error);
+    }
+}
+
+
+// saga to store all genres in redux
+function* getGenres() {
+    try {
+        const response = yield axios.get('/api/genre');
+        yield put({type: 'SET_GENRES', payload: response.data});
+    } catch (error) {
+        console.log('error getting genres', error);
+    }
 }
 
 // saga to store individual movie's genres in redux
-function* getGenre(action) {
+function* getMovieGenres(action) {
     try {
-        console.log('*********',action.payload)
         const response = yield axios.get(`/api/genre/${action.payload}`);
         yield put({type: 'SET_GENRE_INFO', payload: response.data});
     } catch (error) {
@@ -107,10 +130,8 @@ const storeInstance = createStore(
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
-    <React.StrictMode>
         <Provider store={storeInstance}>
         <App />
-        </Provider>
-    </React.StrictMode>,
+        </Provider>,
     document.getElementById('root')
 );
