@@ -12,12 +12,11 @@ const useStyles = makeStyles((theme) => ({
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'space-around',
-          overflow: 'hidden',
-          backgroundColor: theme.palette.background.paper,
+        //   overflow: 'hidden',
         },
         gridList: {
           flexWrap: 'wrap',
-          transform: 'translateZ(0)'
+          transform: 'translateZ(0)',
         },
       }));
 
@@ -41,7 +40,7 @@ function MovieList(props) {
             <div>
                 <h1>MovieList</h1>
                 <nav>
-                    <Link className="link" to='/add-movie'>Add A Movie</Link>
+                    <Link to='/add-movie'>Add A Movie</Link>
                 </nav>
             </div>
             <div className={classes.root}>

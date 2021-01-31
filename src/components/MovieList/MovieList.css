@@ -3,13 +3,18 @@
     flex-wrap: wrap;
 }
 
+h1{
+    color: white;
+}
 
-
-.link {
-    text-decoration: underline;
-    color: blue;
+a {
+    text-decoration: none;
+    color: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    
+    box-shadow: 0 4px 6px #291528;
+    padding: 10px;
+    background-color: #0353a4;
+    border-radius: 5px;
 }
 
 a:hover {
