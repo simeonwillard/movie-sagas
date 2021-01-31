@@ -5,6 +5,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import CheckIcon from '@material-ui/icons/Check';
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
+import './MovieForm.css';
 
 
 function MovieForm() {
@@ -73,45 +74,50 @@ function MovieForm() {
 
 
     return (
-        <div>
+        <div className="form">
             <form onSubmit={addMovie}>
                 <div className="title">
-                <InputLabel>Title</InputLabel>
+                
                     <input
                         type="text"
-                        name="title"
+                        name="Movie Title"
                         value={newMovie.title}
                         onChange={handleChange}
+                        placeholder="title"
                     />
                 </div>
                 <div className="poster">
-                <InputLabel>Poster URL</InputLabel>
+                
                     <input
                         type="text"
                         name="poster"
                         value={newMovie.poster}
                         onChange={handleChange}
+                        placeholder="Poster URL"
                     />
                 </div>
                 <div className="description">
-                <InputLabel>Description</InputLabel>
+                
                     <textarea
                         rows="7"
                         cols="35"
                         name="description"
                         value={newMovie.description}
                         onChange={handleChange}
+                        placeholder="Movie Description"
                     />
                 </div>
                 <div>
-                    <InputLabel>Genre</InputLabel>
+                    
+                    <h5>Genre:</h5>
                     <Select
                         value={newMovie.genre_id}
                         name="genre_id"
                         onChange={handleChange}
+                        background-color="white"
                     >
                         {genres?.map((genre) => (
-                            <MenuItem key={genre.id} value={genre.id}>
+                            <MenuItem  key={genre.id} value={genre.id}>
                                 {genre.name}
                             </MenuItem>
                         ))}
@@ -119,9 +125,12 @@ function MovieForm() {
                 </div>
                 <IconButton color="secondary" onClick={handleCancel}>
                     <CloseIcon />
+                    <h6>cancel</h6>
                 </IconButton>
                 <IconButton color="primary" type="submit">
+                    
                     <CheckIcon />
+                    <h6>save</h6>
                 </IconButton>
             </form>
         </div>

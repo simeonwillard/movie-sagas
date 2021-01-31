@@ -2,6 +2,7 @@ import { IconButton } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import './Details.css';
 
 
 function Details() {

@@ -4,7 +4,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import { makeStyles } from "@material-ui/core";
 import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
+import './MovieItem.css';
 
 const useStyles = makeStyles((theme) => ({
     icon: {
@@ -40,7 +40,7 @@ function MovieItem({ movie }) {
                         aria-label={`info about ${movie.title}`}
                         className={classes.icon}
                     >
-                        <InfoIcon />
+                       
                     </IconButton>
                 }
             />
