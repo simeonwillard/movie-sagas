@@ -19,6 +19,7 @@ function Details() {
             <div>
                 <header>
                     <h2>{movieInfo.title}</h2>
+                    <img src={movieInfo.poster} />
                 </header>
                 <h4>Genres:</h4>
                 <ul>

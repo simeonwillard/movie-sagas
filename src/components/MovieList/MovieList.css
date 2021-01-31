@@ -2,3 +2,14 @@
     display : flex;
     flex-wrap: wrap;
 }
+
+.nav {
+    margin-left: 80%;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+    background-color: blueviolet;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
